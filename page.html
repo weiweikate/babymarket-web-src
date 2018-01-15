@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script src="js/jquery-1.11.3.js"></script>
+<script>
+    window.onload=function(){
+        console.log(1111)
+    }
+    $.ajax({
+        url:'http://www.babymarkt.com.cn/Libra.Web.Authentication.GetSession.aspx',
+        data: {LoginName:'admin',Password:'babymarkt',Medium:"App"},
+        type:"post",
+        xhrFields:{
+            withCredentials : true
+        },
+        success: function (data) {
+            console.log(data)
+        },
+        error:function(data){
+            console.log('err')
+        }
+    })
+</script>
+</body>
+</html>

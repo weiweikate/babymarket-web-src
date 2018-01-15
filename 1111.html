@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, p, img{
+            margin:0;
+            padding:0;
+        }
+        body{
+            padding: 0 25px;
+        }
+         h3 {
+            text-align: center;
+             margin-bottom: 10px;
+        }
+        .info div>p{
+          float: right;
+      }
+        .info div>p:first-child{
+            float: left;
+        }
+        .info div>p:first-child span{
+            display: inline-block;
+            width: 300px;
+            text-align: center;
+            border-bottom: 1px solid #000000;
+        }
+        .info div>p span{
+            display: inline-block;
+            width: 200px;
+            text-align: center;
+            border-bottom: 1px solid #000000;
+        }
+        .info div>p .time0{
+            width: 50px;
+        }
+        .info div{
+            overflow: hidden;
+        }
+        .info .addrs>p:first-child{
+            float: right;
+        }
+        .info .addrs>:first-child span{
+            width: 200px;
+        }
+        .otherInfo span{
+            border-bottom: 1px solid #000;
+        }
+        .breakLine{word-break: break-all;}
+    </style>
+    <style type="text/css">
+        html,body{overflow:hidden;}
+        body{margin:0;padding:0;}
+        pre{color:green;padding:10px 15px;background:#f0f0f0;border:1px dotted #333;font:12px/1.5 Courier New;margin:12px;}
+        span{color:#999;}
+        #box{position:absolute;top:50px;left:300px;width:100px;height:100px;background:red;}
+    </style>
+</head>
+<body>
+  <h3>产 &nbsp;品 &nbsp;购 &nbsp;销 &nbsp;合 &nbsp;同</h3>
+  <div class="info">
+      <div>
+          <p>供方：<span>某某某公司</span></p>
+          <p>合同编号：<span></span></p>
+      </div>
+      <div class="addrs">
+          <p>签订地点：<span></span></p>
+      </div>
+      <div>
+          <p>需方：<span></span></p>
+          <p>签订时间：<span class="time0">2017</span>年<span class="time0">12</span>月<span class="time0">12</span>日</p>
+      </div>
+  </div>
+  <p style="margin-top: 15px">一、双方购销产品议定各项条件</p>
+  <div class="otherInfo">
+      <p>二、质量标准以及保证期：<span>产品行业质量标准，质保1年</span></p>
+      <p>三、提（交）货时间、地点及方式：<span>双方签订个合同在规定的时间内将货交于承运人，并在需方确认签收的情况下，视为完成交货。</span></p>
+      <p>四、运输方式: <span>快递或物流</span></p>
+      <p>五、包装及运输费：供方负责</p>
+      <p>六、付款方式（银行结算）： <span>银行转账或电汇</span></p>
+      <p>七、解决合同纠纷的方式：<span>双方友好协商解决，协商不成应向合同签订地有管辖权的人民法院起诉解决。 </span></p>
+      <p>八、其他议定事项：<span>合同一式两份，双方各执一份，合同传真有效。</span></p>
+  </div>
+  <table width="400">
+      　　<tr>
+      　　<td width="90" height="30">处理人工号：</td>
+      　　<td width="410" class="breakLine">001156,001157,001145,001149,001178,001123,001140,001167,001168,001134,001135</td>
+      　　</tr>
+      　　</table>
+  <div id="box"></div>
+  <script type="text/javascript">
+      window.onload = function ()
+      {
+          var oBox = document.getElementById("box");
+          var bLeft = bTop = bRight = bBottom = bCtrlKey = false;
+          setInterval(function ()
+          {
+              if (bLeft)
+              {
+                  oBox.style.left = oBox.offsetLeft - 10 + "px"
+              }
+              else if (bRight)
+              {
+                  oBox.style.left = oBox.offsetLeft + 10 + "px"
+              }
+              if (bTop)
+              {
+                  oBox.style.top = oBox.offsetTop - 10 + "px"
+              }
+              else if(bBottom)
+              {
+                  oBox.style.top = oBox.offsetTop + 10 + "px"
+              }
+//防止溢出
+              limit();
+          },30);
+          document.onkeydown = function (event)
+          {
+              var event = event || window.event;
+              bCtrlKey = event.ctrlKey;
+              switch (event.keyCode)
+              {
+                  case 37:
+                      bLeft = true;
+                      break;
+                  case 38:
+                      if(bCtrlKey)
+                      {
+                          var oldWidth = oBox.offsetWidth;
+                          var oldHeight = oBox.offsetHeight;
+                          oBox.style.width = oBox.offsetWidth * 1.5 + "px";
+                          oBox.style.height = oBox.offsetHeight * 1.5 + "px";
+                          oBox.style.left = oBox.offsetLeft - (oBox.offsetWidth - oldWidth) / 2 + "px";
+                          oBox.style.top = oBox.offsetTop - (oBox.offsetHeight - oldHeight) / 2 + "px";
+                          break;
+                      }
+                      bTop = true;
+                      break;
+                  case 39:
+                      bRight = true;
+                      break;
+                  case 40:
+                      if(bCtrlKey)
+                      {
+                          var oldWidth = oBox.offsetWidth;
+                          var oldHeight = oBox.offsetHeight;
+                          oBox.style.width = oBox.offsetWidth * 0.75 + "px";
+                          oBox.style.height = oBox.offsetHeight * 0.75 + "px";
+                          oBox.style.left = oBox.offsetLeft - (oBox.offsetWidth - oldWidth) / 2 + "px";
+                          oBox.style.top = oBox.offsetTop - (oBox.offsetHeight - oldHeight) / 2 + "px";
+                          break;
+                      }
+                      bBottom = true;
+                      break;
+                  case 49:
+                      bCtrlKey && (oBox.style.background = "green");
+                      break;
+                  case 50:
+                      bCtrlKey && (oBox.style.background = "yellow");
+                      break;
+                  case 51:
+                      bCtrlKey && (oBox.style.background = "blue");
+                      break;
+              }
+              return false
+          };
+          document.onkeyup = function (event)
+          {
+              switch ((event || window.event).keyCode)
+              {
+                  case 37:
+                      bLeft = false;
+                      break;
+                  case 38:
+                      bTop = false;
+                      break;
+                  case 39:
+                      bRight = false;
+                      break;
+                  case 40:
+                      bBottom = false;
+                      break;
+              }
+          };
+//防止溢出
+          function limit()
+          {
+              var doc = [document.documentElement.clientWidth, document.documentElement.clientHeight]
+//防止左侧溢出
+              oBox.offsetLeft <=0 && (oBox.style.left = 0);
+//防止顶部溢出
+              oBox.offsetTop <=0 && (oBox.style.top = 0);
+//防止右侧溢出
+              doc[0] - oBox.offsetLeft - oBox.offsetWidth <= 0 && (oBox.style.left = doc[0] - oBox.offsetWidth + "px");
+//防止底部溢出
+              doc[1] - oBox.offsetTop - oBox.offsetHeight <= 0 && (oBox.style.top = doc[1] - oBox.offsetHeight + "px")
+          }
+      };
+  </script>
+</body>
+</html>
